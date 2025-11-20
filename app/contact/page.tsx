@@ -138,7 +138,7 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 {/* Contact Form */}
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-4xl font-bold text-gray-900 mb-8">
                     Send us a Message
                   </h2>
 
@@ -268,19 +268,19 @@ export default function ContactPage() {
 
                 {/* Contact Information */}
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-4xl font-bold text-gray-900 mb-8">
                     Get in Touch
                   </h2>
-                  <div className="space-y-8">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-white" />
+                  <div className="w-full grid grid-flow-row grid-4 gap-3 mb-12">
+                    <div className="w-100% h-full flex items-start space-x-4 row-span-1 border-2 p-4 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 row-span-2 mt-6 flex object-contain items-center justify-center bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex-shrink-0">
+                        <MapPin className="w-6 h-6 text-orange-500" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
                           Our Office
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm text-gray-600 leading-relaxed">
                           123 Electric Avenue
                           <br />
                           Makati City, Metro Manila
@@ -290,15 +290,15 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-6 h-6 text-white" />
+                    <div className="w-100% h-full flex items-start space-x-4 row-span-1 border-2 p-4 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 row-span-2 mt-6  bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Phone className="w-6 h-6 text-orange-500" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
                           Phone Numbers
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm text-gray-600 leading-relaxed">
                           Sales: +63 (02) 123-4567
                           <br />
                           Support: +63 (02) 765-4321
@@ -307,16 +307,16 @@ export default function ContactPage() {
                         </p>
                       </div>
                     </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-6 h-6 text-white" />
+            
+                    <div className="w-100% h-full flex items-start space-x-4 row-span-1 border-2 p-4 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 row-span-2 mt-6  bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-6 h-6 text-orange-500" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
                           Email Addresses
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm text-gray-600 leading-relaxed">
                           General: info@yamaaraw.com
                           <br />
                           Sales: sales@yamaaraw.com
@@ -326,15 +326,15 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Clock className="w-6 h-6 text-white" />
+                    <div className="w-100% h-full flex items-start space-x-4 row-span-1 border-2 p-4 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 row-span-2 mt-6 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Clock className="w-6 h-6 text-orange-500" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
                           Business Hours
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm text-gray-600 leading-relaxed">
                           Monday - Friday: 8:00 AM - 6:00 PM
                           <br />
                           Saturday: 9:00 AM - 4:00 PM
@@ -343,6 +343,7 @@ export default function ContactPage() {
                         </p>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>

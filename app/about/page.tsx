@@ -138,7 +138,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="text-center max-w-4xl mx-auto">
-                <Badge className="mb-6 bg-orange-500/20 text-orange-300 border-orange-400/30 backdrop-blur-sm">
+                <Badge className="mb-6 px-2.5 py-2 bg-orange-500/20 text-orange-300 border-orange-400/30 backdrop-blur-sm">
                   About YAMAARAW
                 </Badge>
                 <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -183,7 +183,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {/* Content */}
                 <div>
-                  <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-white hover:from-orange-700 hover:to-red-700 transition-all">
+                  <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-orange-300 hover:from-orange-700 hover:to-red-700 transition-all">
                     Our Story
                   </Badge>
                   <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -249,7 +249,7 @@ export default function AboutPage() {
           <section className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-white hover:from-orange-700 hover:to-red-700 transition-all">
+                <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-orange-300 hover:from-orange-700 hover:to-red-700 transition-all">
                   Our Purpose
                 </Badge>
                 <h2 className="text-4xl font-bold text-gray-900">
@@ -297,7 +297,7 @@ export default function AboutPage() {
           <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-white hover:from-orange-700 hover:to-red-700 transition-all">
+                <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-orange-300 hover:from-orange-700 hover:to-red-700 transition-all">
                   Why Choose YAMAARAW
                 </Badge>
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -337,7 +337,7 @@ export default function AboutPage() {
           <section className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-white hover:from-orange-700 hover:to-red-700 transition-all">
+                <Badge className="mb-4 bg-orange-100 text-orange-600 border-orange-200 px-2.5 py-2 hover:text-orange-300 hover:from-orange-700 hover:to-red-700 transition-all">
                   Product Portfolio
                 </Badge>
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">
