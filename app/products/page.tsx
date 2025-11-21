@@ -298,7 +298,7 @@ export default function ProductsPage() {
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
 
-                className="block apearance-none w-full h-full min-w-[200px] px-5 py-3 bg-transparent border-2 rounded-lg border-orange-200 text-sm focus:border-orange-500 focus:outline-none hover:border-orange-500 bg-white min-w-[180px]"
+                className="block apearance-none w-full h-full px-5 py-3 bg-transparent border-2 rounded-lg border-orange-200 text-sm focus:border-orange-500 focus:outline-none hover:border-orange-500 bg-white"
               >
                 {/* className="block py-2.5 ps-0 w-full text-sm text-body bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" */}
                 <option value="name" className="p-2 hover:bg-blue-100 cursor-pointer">Sort by Name</option>
@@ -419,7 +419,7 @@ export default function ProductsPage() {
                       src={product.images?.[0] || "/placeholder.svg"}
                       alt={product.name}
                       fill
-                      className="w-full h-full pb-8 object-scale-down rounded-lg object-contain p-4 group-hover:scale-150 transition-transform duration-400 "
+                      className="w-full h-full pb-8 rounded-lg object-contain p-4 group-hover:scale-150 transition-transform duration-400 "
                       sizes={
                         viewMode === "list"
                           ? "(max-width: 640px) 100vw, 128px"

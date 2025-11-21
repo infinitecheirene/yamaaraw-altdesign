@@ -325,7 +325,7 @@ export default function ProductViewPage() {
                   <CardTitle className="text-base sm:text-lg">Description</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base text-justify text-sm/6">{product.description}</p>
+                  <p className="text-gray-700 leading-relaxed sm:text-base text-justify text-sm/6">{product.description}</p>
                 </CardContent>
               </Card>
 
