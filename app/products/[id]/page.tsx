@@ -210,7 +210,7 @@ export default function ProductDetailPage() {
                 src={product.images?.[selectedImageIndex] || "/placeholder.svg"}
                 alt={product.name}
                 fill
-                className="object-contain "
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
