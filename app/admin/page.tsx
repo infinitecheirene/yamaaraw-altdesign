@@ -7,7 +7,8 @@ import {
   Users,
   Package,
   ShoppingCart,
-  DollarSign,
+  PhilippinePeso,
+  MousePointerClick,
   Eye,
   Settings,
   Bell,
@@ -187,7 +188,7 @@ export default function AdminDashboard() {
       title: "Total Revenue",
       value: stats ? formatCurrency(stats.totalRevenue) : "Loading...",
       change: "+12.5%",
-      icon: DollarSign,
+      icon: PhilippinePeso,
       color: "text-green-600",
       bgColor: "bg-green-100",
       description: "From delivered orders",
@@ -325,36 +326,37 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Chat Stats Grid */}
-        <div className="mb-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Chat Support Overview</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {chatStatsCards.map((stat, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                      <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                      <p className="text-xs text-gray-500 mt-1">{stat.description}</p>
-                    </div>
-                    <div className={`p-3 rounded-full ${stat.bgColor}`}>
-                      {stat.icon && <stat.icon className={`w-6 h-6 ${stat.color}`} />}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Quick Actions and Recent Orders */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl">Quick Actions</CardTitle>
+              <CardTitle className="text-xl flex items-center"> 
+                <MousePointerClick className="w-5 h-5 mr-2" /> 
+                Quick Actions
+              </CardTitle>
             </CardHeader>
             <CardContent>
+              <div className="mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {chatStatsCards.map((stat, index) => (
+                    <Card key={index} className="hover:shadow-lg transition-shadow">
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium text-gray-600 h-10">{stat.title}</p>
+                            <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                            <p className="text-xs text-gray-500 mt-1">{stat.description}</p>
+                          </div>
+                          <div className={`p-3 rounded-full ${stat.bgColor}`}>
+                            {stat.icon && <stat.icon className={`w-6 h-6 ${stat.color}`} />}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {quickActions.map((action, index) => (
                   <Button

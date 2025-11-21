@@ -208,7 +208,7 @@ export default function ProductViewPage() {
                   src={product.images?.[currentImageIndex] || "/placeholder.svg"}
                   alt={product.name}
                   fill
-                  className="object-cover"
+                  className="object-contain p-10"
                 />
 
                 {product.images && product.images.length > 1 && (
@@ -267,7 +267,7 @@ export default function ProductViewPage() {
                         src={image || "/placeholder.svg"}
                         alt={`${product.name} ${index + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-"
                       />
                     </button>
                   ))}
@@ -279,11 +279,32 @@ export default function ProductViewPage() {
             <div className="space-y-4 sm:space-y-6">
               {/* Product Title & Category */}
               <div>
-                <Badge className="bg-orange-100 text-orange-600 border-orange-200 mb-3 text-xs sm:text-sm">
-                  {product.category}
-                </Badge>
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{product.name}</h2>
-                <p className="text-base sm:text-lg text-gray-600 mb-4">{product.model}</p>
+                <div className="flex place-content-between">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{product.name}</h2>
+                  {/* Stock Status */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-6 space-y-2 sm:space-y-0">
+                    <Badge
+                      className={`${
+                        product.in_stock
+                          ? "bg-green-100 text-green-600 border-green-200"
+                          : "bg-red-100 text-red-600 border-red-200"
+                      } text-xs sm:text-sm w-fit`}
+                    >
+                      {product.in_stock ? "✓ In Stock" : "✗ Out of Stock"}
+                    </Badge>
+                    {product.featured && (
+                      <Badge className="bg-yellow-100 text-yellow-600 border-yellow-200 text-xs sm:text-sm w-fit">
+                        ⭐ Featured Product
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+                <div className="flex space-x-2">
+                  <Badge className="bg-orange-100 text-orange-600 border-orange-200 mb-3 text-xs sm:text-sm">
+                    {product.category}
+                  </Badge>
+                  <p className="text-base sm:text-lg text-gray-600 mb-1">{product.model}</p>
+                </div>
 
                 {/* Price */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
@@ -295,78 +316,64 @@ export default function ProductViewPage() {
                   )}
                 </div>
 
-                {/* Stock Status */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-6 space-y-2 sm:space-y-0">
-                  <Badge
-                    className={`${
-                      product.in_stock
-                        ? "bg-green-100 text-green-600 border-green-200"
-                        : "bg-red-100 text-red-600 border-red-200"
-                    } text-xs sm:text-sm w-fit`}
-                  >
-                    {product.in_stock ? "✓ In Stock" : "✗ Out of Stock"}
-                  </Badge>
-                  {product.featured && (
-                    <Badge className="bg-yellow-100 text-yellow-600 border-yellow-200 text-xs sm:text-sm w-fit">
-                      ⭐ Featured Product
-                    </Badge>
-                  )}
-                </div>
+                
               </div>
 
               {/* Description */}
               <Card>
-                <CardHeader className="pb-3 sm:pb-6">
+                <CardHeader className="pb-2 sm:pb-3">
                   <CardTitle className="text-base sm:text-lg">Description</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{product.description}</p>
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base text-justify text-sm/6">{product.description}</p>
                 </CardContent>
               </Card>
 
               {/* Available Colors */}
-              {product.colors && product.colors.length > 0 && (
-                <Card>
-                  <CardHeader className="pb-3 sm:pb-6">
-                    <CardTitle className="text-base sm:text-lg">Available Colors</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-3">
-                      {product.colors.map((color, index) => (
-                        <div key={index} className="flex items-center space-x-2">
-                          <div
-                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300"
-                            style={{ backgroundColor: color.value }}
-                          />
-                          <span className="text-xs sm:text-sm text-gray-700">{color.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 space-x-2">
+                {product.colors && product.colors.length > 0 && (
+                  <Card>
+                    <CardHeader className="pb-2 sm:pb-3">
+                      <CardTitle className="text-base sm:text-lg">Available Colors</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-3">
+                        {product.colors.map((color, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                            <div
+                              className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300"
+                              style={{ backgroundColor: color.value }}
+                            />
+                            <span className="text-xs sm:text-sm text-gray-700">{color.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
 
-              {/* Ideal For */}
-              {product.ideal_for && product.ideal_for.length > 0 && (
-                <Card>
-                  <CardHeader className="pb-3 sm:pb-6">
-                    <CardTitle className="text-base sm:text-lg">Ideal For</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {product.ideal_for.map((use, index) => (
-                        <Badge
-                          key={index}
-                          variant="outline"
-                          className="border-blue-200 text-blue-600 text-xs sm:text-sm"
-                        >
-                          {use}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+                {/* Ideal For */}
+                {product.ideal_for && product.ideal_for.length > 0 && (
+                  <Card>
+                    <CardHeader className="pb-2 sm:pb-3">
+                      <CardTitle className="text-base sm:text-lg">Ideal For</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {product.ideal_for.map((use, index) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="border-blue-200 text-blue-600 text-xs sm:text-sm w-30 h-8"
+                          >
+                            {use}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             </div>
           </div>
 

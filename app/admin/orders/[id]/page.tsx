@@ -492,80 +492,163 @@ export default function AdminOrderDetailsPage() {
               </CardContent>
             </Card>
 
-            {/* Status Update */}
+            {/* Order Timeline */}
             <Card>
               <CardHeader className="pb-3 sm:pb-6">
                 <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
-                  <Edit3 className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Update Order Status</span>
+                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>Order Timeline</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
-                  {statuses.map((status) => (
-                    <Button
-                      key={status}
-                      onClick={() => handleStatusUpdate(status)}
-                      disabled={updatingStatus || order.status === status}
-                      variant={order.status === status ? "default" : "outline"}
-                      size="sm"
-                      className={`${
-                        order.status === status
-                          ? "bg-orange-500 hover:bg-orange-600"
-                          : "border-orange-200 text-orange-600 hover:bg-orange-50"
-                      } text-xs sm:text-sm`}
-                    >
-                      {getStatusIcon(status)}
-                      <span className="ml-1 sm:ml-2 capitalize">{status}</span>
-                    </Button>
-                  ))}
+              <CardContent className="space-y-2 sm:space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                  <div className="text-xs sm:text-sm flex">
+                    <p className="font-medium">Order Placed</p>
+                    <p className="text-gray-600">
+                      {new Date(order.created_at).toLocaleDateString("en-PH", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
+                  </div>
                 </div>
-                {updatingStatus && <p className="text-xs sm:text-sm text-gray-600 mt-2">Updating status...</p>}
-              </CardContent>
-            </Card>
 
-            {/* Payment Status Update */}
-            <Card>
-              <CardHeader className="pb-3 sm:pb-6">
-                <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
-                  <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Update Payment Status</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-4">
-                  <p className="text-xs sm:text-sm text-gray-600 mb-2">Current Payment Status:</p>
-                  <Badge
-                    className={`${getPaymentStatusColor(order.payment_status || "pending")} flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 sm:py-2 w-fit text-xs sm:text-sm`}
-                  >
-                    {getPaymentStatusIcon(order.payment_status || "pending")}
-                    <span className="font-medium capitalize">{order.payment_status || "pending"}</span>
-                  </Badge>
-                </div>
-                <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
-                  {paymentStatuses.map((status) => (
-                    <Button
-                      key={status}
-                      onClick={() => handlePaymentStatusUpdate(status)}
-                      disabled={updatingPaymentStatus || (order.payment_status || "pending") === status}
-                      variant={(order.payment_status || "pending") === status ? "default" : "outline"}
-                      size="sm"
-                      className={`${
-                        (order.payment_status || "pending") === status
-                          ? "bg-orange-500 hover:bg-orange-600"
-                          : "border-orange-200 text-orange-600 hover:bg-orange-50"
-                      } text-xs sm:text-sm`}
-                    >
-                      {getPaymentStatusIcon(status)}
-                      <span className="ml-1 sm:ml-2 capitalize">{status}</span>
-                    </Button>
-                  ))}
-                </div>
-                {updatingPaymentStatus && (
-                  <p className="text-xs sm:text-sm text-gray-600 mt-2">Updating payment status...</p>
+                {order.paid_at && (
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                    <div className="text-xs sm:text-sm min-w-0 flex-1">
+                      <p className="font-medium">Payment Confirmed</p>
+                      <p className="text-gray-600">
+                        {new Date(order.paid_at).toLocaleDateString("en-PH", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {order.shipped_at && (
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
+                    <div className="text-xs sm:text-sm min-w-0 flex-1">
+                      <p className="font-medium">Order Shipped</p>
+                      <p className="text-gray-600">
+                        {new Date(order.shipped_at).toLocaleDateString("en-PH", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {order.delivered_at && (
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                    <div className="text-xs sm:text-sm min-w-0 flex-1">
+                      <p className="font-medium">Order Delivered</p>
+                      <p className="text-gray-600">
+                        {new Date(order.delivered_at).toLocaleDateString("en-PH", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                  </div>
                 )}
               </CardContent>
             </Card>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 space-x-2">
+              {/* Status Update */}
+              <Card>
+                <CardHeader className="pb-3 sm:pb-6">
+                  <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
+                    <Edit3 className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>Update Order Status</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 flex-wrap gap-2">
+                    {statuses.map((status) => (
+                      <Button
+                        key={status}
+                        onClick={() => handleStatusUpdate(status)}
+                        disabled={updatingStatus || order.status === status}
+                        variant={order.status === status ? "default" : "outline"}
+                        size="sm"
+                        className={`${
+                          order.status === status
+                            ? "bg-orange-500 hover:bg-orange-600"
+                            : "border-orange-200 text-orange-600 hover:bg-orange-50"
+                        } text-xs sm:text-sm w-26 h-10`}
+                      >
+                        {getStatusIcon(status)}
+                        <span className="ml-1 sm:ml-2 capitalize">{status}</span>
+                      </Button>
+                    ))}
+                  </div>
+                  {updatingStatus && <p className="text-xs sm:text-sm text-gray-600 mt-2">Updating status...</p>}
+                </CardContent>
+              </Card>
+
+              {/* Payment Status Update */}
+              <Card>
+                <CardHeader className="pb-3 sm:pb-6">
+                  <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
+                    <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>Update Payment Status</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4">
+                    <p className="text-xs sm:text-sm text-gray-600 mb-2">Current Payment Status:</p>
+                    <Badge
+                      className={`${getPaymentStatusColor(order.payment_status || "pending")} flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 sm:py-2 w-fit text-xs sm:text-sm`}
+                    >
+                      {getPaymentStatusIcon(order.payment_status || "pending")}
+                      <span className="font-medium capitalize">{order.payment_status || "pending"}</span>
+                    </Badge>
+                  </div>
+                  <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
+                    {paymentStatuses.map((status) => (
+                      <Button
+                        key={status}
+                        onClick={() => handlePaymentStatusUpdate(status)}
+                        disabled={updatingPaymentStatus || (order.payment_status || "pending") === status}
+                        variant={(order.payment_status || "pending") === status ? "default" : "outline"}
+                        size="sm"
+                        className={`${
+                          (order.payment_status || "pending") === status
+                            ? "bg-orange-500 hover:bg-orange-600"
+                            : "border-orange-200 text-orange-600 hover:bg-orange-50"
+                        } text-xs sm:text-sm`}
+                      >
+                        {getPaymentStatusIcon(status)}
+                        <span className="ml-1 sm:ml-2 capitalize">{status}</span>
+                      </Button>
+                    ))}
+                  </div>
+                  {updatingPaymentStatus && (
+                    <p className="text-xs sm:text-sm text-gray-600 mt-2">Updating payment status...</p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Right Column - Customer & Payment Info */}
@@ -659,87 +742,6 @@ export default function AdminOrderDetailsPage() {
                     <span className="font-bold text-orange-600 text-sm sm:text-base">{formatPrice(order.total)}</span>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Order Timeline */}
-            <Card>
-              <CardHeader className="pb-3 sm:pb-6">
-                <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
-                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Order Timeline</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 sm:space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                  <div className="text-xs sm:text-sm min-w-0 flex-1">
-                    <p className="font-medium">Order Placed</p>
-                    <p className="text-gray-600">
-                      {new Date(order.created_at).toLocaleDateString("en-PH", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
-                  </div>
-                </div>
-
-                {order.paid_at && (
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                    <div className="text-xs sm:text-sm min-w-0 flex-1">
-                      <p className="font-medium">Payment Confirmed</p>
-                      <p className="text-gray-600">
-                        {new Date(order.paid_at).toLocaleDateString("en-PH", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {order.shipped_at && (
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                    <div className="text-xs sm:text-sm min-w-0 flex-1">
-                      <p className="font-medium">Order Shipped</p>
-                      <p className="text-gray-600">
-                        {new Date(order.shipped_at).toLocaleDateString("en-PH", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {order.delivered_at && (
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                    <div className="text-xs sm:text-sm min-w-0 flex-1">
-                      <p className="font-medium">Order Delivered</p>
-                      <p className="text-gray-600">
-                        {new Date(order.delivered_at).toLocaleDateString("en-PH", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
-                    </div>
-                  </div>
-                )}
               </CardContent>
             </Card>
           </div>
